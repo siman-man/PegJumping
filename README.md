@@ -39,3 +39,37 @@ N * Nで与えられるボード
 
 Any numeric character ('0'..'9') denotes the zero based type of the peg in that cell and '.' denotes an empty space.
 '0' - '9'はペグ、'.'は空の要素
+
+##Clarifications
+
+* Each sequence will move only one peg.
+各ペグは1つしか動かせない
+
+* You can use the same peg in multiple jump sequences as long as it's on the board.
+1つのペグをそれが許す限り複数回動かしても良い
+
+* A peg will be removed from the board when another peg jumps over it.
+他のペグにジャンプされた際、そのペグは消滅する
+
+You don't have to remove all the pegs from the board.
+あなたは全てのペグを削除することは出来ない
+
+The top left corner of the board corresponds to row and column zero.
+ボードの角は(0,0)で始まるものとする
+
+## Notes
+- The time limit is 15 seconds per test case (this includes only the time spent in your code). 
+The memory limit is 1024 megabytes.
+時間制限は15秒
+メモリは1GBまでとする
+
+- There is no explicit code size limit. The implicit source code size limit is around 1 MB 
+(it is not advisable to submit codes of size close to that or larger). Once your code is compiled, 
+the binary size should not exceed 1 MB.
+コードサイズの上限は大体1MBぐらいまで
+
+- The compilation time limit is 30 seconds. You can find information about compilers that we use 
+and compilation options here.
+コンパイルの時間制限は30秒
+
+- There are 10 example test cases and 100 full submission (provisional) test cases.

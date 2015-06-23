@@ -1,12 +1,13 @@
 @filename = "PegJumping"
 
 task :default do
-  `mcs #{@filename}.cs`
+  `g++ -W -Wall -Wno-sign-compare -O2 -o #{@filename} #{@filename}.cpp`
 end
 
 task :run do
-  system("mcs #{@filename}.cs")
-  system("java -jar ./#{@filename}Vis.jar -seed 1 -exec './#{@filename}.exe'")
+  system("g++ -W -Wall -Wno-sign-compare -O2 -o #{@filename} #{@filename}.cpp")
+  system("java -jar ./#{@filename}Vis.jar -seed 1 -exec './#{@filename}'")
+  #system("java -jar ./#{@filename}Vis.jar -side 12 -seed 105 -exec './#{@filename}'")
 end
 
 task :windows do
@@ -16,7 +17,6 @@ end
 
 task :one do
   system("g++ -W -Wall -Wno-sign-compare -O2 -o #{@filename} #{@filename}.cpp")
-  #system("time java -jar #{@filename}Vis.jar -seed 10 -novis -exec './#{@filename}'")
   system("time java -jar #{@filename}Vis.jar -seed 1 -novis -exec './#{@filename}'")
 end
 
@@ -28,7 +28,7 @@ end
 task :novis do
   system('rm result.txt')
   system("g++ -W -Wall -Wno-sign-compare -O2 -o #{@filename} #{@filename}.cpp")
-  1001.upto(1100) do |num|
+  1.upto(100) do |num|
     p num
     system("time java -jar ./#{@filename}Vis.jar -seed #{num} -novis -exec './#{@filename}' >> result.txt")
   end
