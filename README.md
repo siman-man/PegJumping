@@ -73,3 +73,19 @@ and compilation options here.
 コンパイルの時間制限は30秒
 
 - There are 10 example test cases and 100 full submission (provisional) test cases.
+
+
+## 考察
+
+連続ジャンプの際の得点効率が一番良さそう
+
+(連続ジャンプで消したペグのスコア合計値) * (連続ジャンプの回数)
+
+1回飛ぶ毎に両方増えるので
+
+分けた場合だと
+
+(合計値/n) * (回数/n) * (n)
+
+全体として分けた数だけスコアが減る計算（正確には違うだろうけど）
+

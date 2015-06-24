@@ -1,1 +1,4 @@
 *.exe
+*.swp
+/doc
+PegJumping
