@@ -3,6 +3,9 @@
 #include <sstream>
 #include <algorithm>
 #include <queue>
+#include <cstdio>
+#include <limits.h>
+#include <string.h>
 #include <cassert>
 #include <map>
 #include <set>
@@ -86,7 +89,7 @@ class PegJumping{
     }
 
     string move2string(int y, int x, string move){
-      return (int2string(y) + " " + int2string(x) + " " + move);
+      return (int2string(y-2) + " " + int2string(x-2) + " " + move);
     }
 
     /**
@@ -103,7 +106,11 @@ class PegJumping{
       int dx = x + DX[direct] * 2;
 
       if(g_field[dy][dx] != PLAIN) return false;
-      return g_directHash[(g_field[ny][nx] & DIRECT_MASK)] > 0;
+      return isExistPeg(ny, nx);
+    }
+
+    bool isExistPeg(int y, int x){
+      return (g_field[y][x] != PLAIN && g_field[y][x] != GUARD);
     }
 
     /**
@@ -113,7 +120,7 @@ class PegJumping{
      * 飛んだペグは消す
      */
     void jumpPeg(int fromY, int fromX, int direct){
-      fprintf(stderr,"jumpPeg =>\n");
+      //fprintf(stderr,"jumpPeg =>\n");
       int pegType = g_field[fromY][fromX];
       g_field[fromY][fromX] = PLAIN;
 
@@ -172,7 +179,7 @@ class PegJumping{
       vector<string> ret;
 
       init(pegValue, board);
-      showField();
+      //showField();
 
       string str;
 
@@ -203,7 +210,7 @@ class PegJumping{
         for(int x = 2; x < g_width+2; x++){
           for(int direct = 0; direct < 4; direct++){
             if(g_field[y][x] != PLAIN && canJumping(y, x, direct)){
-              fprintf(stderr,"can jump: y = %d, x = %d, direct = %d\n", y, x, direct); 
+              //fprintf(stderr,"can jump: y = %d, x = %d, direct = %d\n", y, x, direct); 
               int score = getPegValue(y, x);
 
               if(max_score < score){
