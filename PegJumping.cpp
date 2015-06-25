@@ -6,6 +6,8 @@
 #include <cstdio>
 #include <limits.h>
 #include <string.h>
+#include <cstring>
+#include <cstdio>
 #include <cassert>
 #include <map>
 #include <set>
@@ -65,6 +67,7 @@ string int2string(int number){
 }
 
 int g_field[MAX_N][MAX_N];
+int g_temp_field[MAX_N][MAX_N];
 int g_pegValue[MAX_M];
 
 struct Node {
@@ -206,12 +209,15 @@ class PegJumping{
       int max_score = INT_MIN;
       int bestY, bestX, bestDirect;
 
+			memcpy(g_temp_field, g_field, sizeof(g_field));
+
       for(int y = 2; y < g_height+2; y++){
         for(int x = 2; x < g_width+2; x++){
           for(int direct = 0; direct < 4; direct++){
             if(g_field[y][x] != PLAIN && canJumping(y, x, direct)){
               //fprintf(stderr,"can jump: y = %d, x = %d, direct = %d\n", y, x, direct); 
               int score = getPegValue(y, x);
+        			jumpPeg(y, x, direct);
 
               if(max_score < score){
                 max_score = score;
@@ -219,6 +225,7 @@ class PegJumping{
                 bestX = x;
                 bestDirect = direct;
               }
+							memcpy(g_field, g_temp_field, sizeof(g_field));
             }
           }
         }
